@@ -23,6 +23,10 @@ button {
   }
 }
 
+.error-message {
+  color: red;
+}
+
 @media screen and (max-width: 600px) {
   form {
     margin-bottom: 16px;

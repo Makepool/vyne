@@ -40,6 +40,8 @@ export class TransactionsComponent {
 
   readonly loading = signal(true);
 
+  readonly error = signal(false);
+
   private readonly statusFilter$ = new BehaviorSubject<TransactionStatus>(null);
 
   readonly form = this.fb.group({
@@ -79,6 +81,7 @@ export class TransactionsComponent {
               this.tableData.set(result.items);
               this.loading.set(false);
             },
+            error: () => this.error.set(true),
           })
         )
         .subscribe();
