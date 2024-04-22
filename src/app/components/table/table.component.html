@@ -13,11 +13,11 @@
   </thead>
   <tbody role="rowgroup">
     <tr role="row" *ngFor="let row of data">
-      <td>{{ row.amount }}</td>
+      <td>{{ row.amount | number : ".2" }}</td>
       <td>{{ row.currency }}</td>
       <td>{{ row.description }}</td>
       <td>{{ row.status }}</td>
-      <td>{{ row.createdAt }}</td>
+      <td>{{ row.createdAt | date : "dd/MM/yyyy" }}</td>
     </tr>
   </tbody>
 </table>
