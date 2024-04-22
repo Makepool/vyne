@@ -1,0 +1,23 @@
+:host {
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #676380;
+  background-color: #e2e1eb;
+  text-transform: capitalize;
+
+  &.completed {
+    color: #056a4b;
+    background-color: #edfcf7;
+  }
+
+  &.captured,
+  &.settled {
+    color: #93410f;
+    background-color: #fff7e6;
+  }
+
+  &.failed {
+    color: #e00;
+    background-color: #fcdbd9;
+  }
+}
