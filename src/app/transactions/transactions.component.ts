@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { BehaviorSubject, combineLatest, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, startWith, tap } from 'rxjs';
 import { TransationsApiService } from './transations-api.service';
 import { TableComponent } from '../components/table/table.component';
 import { Transaction, TransactionStatus } from './transactions.model';
@@ -8,12 +8,15 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-transactions',
   standalone: true,
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.scss',
+  providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgIf,
@@ -23,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDatepickerModule,
   ],
 })
 export class TransactionsComponent {
@@ -36,15 +40,38 @@ export class TransactionsComponent {
 
   readonly loading = signal(true);
 
-  private readonly filter$ = new BehaviorSubject<TransactionStatus>(null);
+  private readonly statusFilter$ = new BehaviorSubject<TransactionStatus>(null);
+
+  readonly form = this.fb.group({
+    status: new FormControl<TransactionStatus>(null),
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+  readonly statusChanged$ = this.form.get('status')?.valueChanges.pipe(
+    tap((value: TransactionStatus) => {
+      this.pageIndex$.next(0);
+      this.statusFilter$.next(value);
+    })
+  );
+
+  readonly startChanged$ = this.form.controls['start'].valueChanges;
+
+  readonly endChanged$ = this.form.controls['end'].valueChanges;
+
+  readonly filterDates$ = combineLatest([
+    this.startChanged$,
+    this.endChanged$,
+  ]).pipe(startWith([null, null]));
 
   readonly paginationAndFilter$ = combineLatest([
-    this.filter$,
+    this.statusFilter$,
     this.pageIndex$,
+    this.filterDates$,
   ]).pipe(
-    tap(([filter, pageIndex]) => {
+    tap(([filter, pageIndex, filterDates]) => {
       this.api
-        .get(pageIndex, filter)
+        .get(pageIndex, filter, filterDates[0], filterDates[1])
         .pipe(
           tap({
             next: (result) => {
@@ -55,19 +82,6 @@ export class TransactionsComponent {
           })
         )
         .subscribe();
-    })
-  );
-
-  readonly form = this.fb.group({
-    filter_by: new FormControl<TransactionStatus>(null),
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-
-  readonly filterChanged$ = this.form.get('filter_by')?.valueChanges.pipe(
-    tap((value: TransactionStatus) => {
-      this.pageIndex$.next(0);
-      this.filter$.next(value);
     })
   );
 
