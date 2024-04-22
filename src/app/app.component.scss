@@ -7,8 +7,9 @@ header {
   display: flex;
   align-items: center;
   height: 100%;
-  max-width: 1000px;
+  max-width: 1024px;
   margin: 0 auto;
+  padding-inline-start: 8px;
 
   img {
     max-width: 80px;
@@ -16,7 +17,7 @@ header {
 }
 
 .main {
-  max-width: 1000px;
+  max-width: 1024px;
   margin: 0 auto;
   padding-top: 16px;
 }

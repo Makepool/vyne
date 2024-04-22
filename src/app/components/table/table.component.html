@@ -1,26 +1,28 @@
 @if (loading) {
 <div class="loading"><mat-spinner /></div>
 } @else { @if (data.length) {
-<table role="table" class="vyne-table">
-  <thead role="rowgroup">
-    <tr role="row">
-      <th role="columnheader">Amount</th>
-      <th role="columnheader">Currency</th>
-      <th role="columnheader">Description</th>
-      <th role="columnheader">Status</th>
-      <th role="columnheader">Created At</th>
-    </tr>
-  </thead>
-  <tbody role="rowgroup">
-    <tr role="row" *ngFor="let row of data">
-      <td>{{ row.amount | number : ".2" }}</td>
-      <td>{{ row.currency }}</td>
-      <td>{{ row.description }}</td>
-      <td>{{ row.status }}</td>
-      <td>{{ row.createdAt | date : "dd/MM/yyyy" }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-container">
+  <table role="table" class="vyne-table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">Amount</th>
+        <th role="columnheader">Currency</th>
+        <th role="columnheader">Description</th>
+        <th role="columnheader">Status</th>
+        <th role="columnheader">Created At</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      <tr role="row" *ngFor="let row of data">
+        <td>{{ row.amount | number : ".2" }}</td>
+        <td>{{ row.currency }}</td>
+        <td>{{ row.description }}</td>
+        <td>{{ row.status }}</td>
+        <td>{{ row.createdAt | date : "dd/MM/yyyy" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 } @else {
 <div>There are no results for your current filter options.</div>
 } }

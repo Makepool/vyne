@@ -5,8 +5,32 @@ button {
   min-width: 100px;
   border: none;
   border-radius: 30px;
+  font-family: Mostar Sofia Pro, serif;
+  font-size: 1em;
+  margin-inline-start: 8px;
+
+  &:hover {
+    background-color: #523fcc;
+    cursor: pointer;
+  }
 
   &:disabled {
-    background-color: grey;
+    background-color: #e1dfe4;
+    color: #a3a2a7;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    margin-bottom: 16px;
+  }
+
+  button {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+
+  mat-form-field {
+    display: block;
   }
 }
