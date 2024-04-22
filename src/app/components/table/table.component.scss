@@ -1,0 +1,49 @@
+.vyne-table {
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 2em;
+  border-bottom: 1px solid #eee;
+}
+
+thead {
+  tr {
+    background-color: #f3f2f7;
+  }
+
+  th {
+    padding: 12px;
+    color: #676380;
+    border-bottom: 1px solid #e2e1eb;
+    text-align: start;
+
+    &:first-child {
+      border-top-left-radius: 12px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 12px;
+    }
+  }
+}
+
+tbody {
+  tr {
+    &:nth-child(even) {
+      background-color: #f3f2f7;
+    }
+
+    &:last-child {
+      td:first-child {
+        border-bottom-left-radius: 12px;
+      }
+
+      td:last-child {
+        border-bottom-right-radius: 12px;
+      }
+    }
+  }
+
+  td {
+    padding: 12px;
+  }
+}
