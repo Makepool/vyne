@@ -1,5 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { BehaviorSubject, combineLatest, startWith, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  startWith,
+  tap,
+} from 'rxjs';
 import { TransationsApiService } from './transations-api.service';
 import { TableComponent } from '../components/table/table.component';
 import { Transaction, TransactionStatus } from './transactions.model';
@@ -71,6 +77,7 @@ export class TransactionsComponent {
     this.pageIndex$,
     this.datesFilter$,
   ]).pipe(
+    debounceTime(100),
     tap(([filter, pageIndex, filterDates]) => {
       this.api
         .get(pageIndex, filter, filterDates[0], filterDates[1])
