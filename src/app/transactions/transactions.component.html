@@ -1,4 +1,19 @@
 <ng-container *ngIf="paginationAndFilter$ | async" />
+<ng-container *ngIf="filterChanged$ | async" />
+
+<form [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="filter_by">
+      <mat-option [value]="null"></mat-option>
+      <mat-option value="CREATED">Created</mat-option>
+      <mat-option value="FAILED">Failed</mat-option>
+      <mat-option value="SETTLED">Settled</mat-option>
+      <mat-option value="CAPTURED">Captured</mat-option>
+      <mat-option value="COMPLETED">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
 
 <vyne-table [data]="tableData()" [loading]="loading()" />
 <mat-paginator
