@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { TransactionStatus, PaginatedTransactions } from './transactions.model';
-import { queryBuilder } from './transation-query-builder.util';
+import { queryBuilder } from './transations-query-builder.util';
 
 @Injectable({
   providedIn: 'root',

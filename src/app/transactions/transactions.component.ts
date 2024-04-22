@@ -59,7 +59,7 @@ export class TransactionsComponent {
 
   readonly endChanged$ = this.form.controls['end'].valueChanges;
 
-  readonly filterDates$ = combineLatest([
+  readonly datesFilter$ = combineLatest([
     this.startChanged$,
     this.endChanged$,
   ]).pipe(startWith([null, null]));
@@ -67,7 +67,7 @@ export class TransactionsComponent {
   readonly paginationAndFilter$ = combineLatest([
     this.statusFilter$,
     this.pageIndex$,
-    this.filterDates$,
+    this.datesFilter$,
   ]).pipe(
     tap(([filter, pageIndex, filterDates]) => {
       this.api

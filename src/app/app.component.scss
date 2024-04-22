@@ -1,6 +1,8 @@
+$primaryColour: #0c0128;
+
 header {
   height: 67px;
-  background-color: #0c0128;
+  background-color: $primaryColour;
 }
 
 .header-bar {

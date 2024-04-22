@@ -1,5 +1,8 @@
+$accentColour: #6c56f9;
+$accentColourDarkened: #523fcc;
+
 button {
-  background-color: #6c56f9;
+  background-color: $accentColour;
   color: #fff;
   min-height: 56px;
   min-width: 100px;
@@ -10,7 +13,7 @@ button {
   margin-inline-start: 8px;
 
   &:hover {
-    background-color: #523fcc;
+    background-color: $accentColourDarkened;
     cursor: pointer;
   }
 
