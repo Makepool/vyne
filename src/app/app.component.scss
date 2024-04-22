@@ -1,0 +1,22 @@
+header {
+  height: 67px;
+  background-color: #0c0128;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  img {
+    max-width: 80px;
+  }
+}
+
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 16px;
+}
