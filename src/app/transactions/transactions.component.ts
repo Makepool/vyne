@@ -90,4 +90,8 @@ export class TransactionsComponent {
   pageChanged(data: PageEvent) {
     this.pageIndex$.next(data.pageIndex);
   }
+
+  clear() {
+    this.form.reset();
+  }
 }

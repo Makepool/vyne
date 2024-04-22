@@ -30,6 +30,8 @@
     <mat-error>Invalid end date</mat-error>
     }
   </mat-form-field>
+
+  <button (click)="clear()" [disabled]="this.form.pristine">Clear</button>
 </form>
 
 <vyne-table [data]="tableData()" [loading]="loading()" />

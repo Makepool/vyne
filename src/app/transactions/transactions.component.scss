@@ -1,0 +1,12 @@
+button {
+  background-color: #6c56f9;
+  color: #fff;
+  min-height: 56px;
+  min-width: 100px;
+  border: none;
+  border-radius: 30px;
+
+  &:disabled {
+    background-color: grey;
+  }
+}
