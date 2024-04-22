@@ -1,1 +1,10 @@
+<ng-container *ngIf="paginationAndFilter$ | async" />
+
 <vyne-table [data]="tableData()" [loading]="loading()" />
+<mat-paginator
+  [pageIndex]="pageIndex()"
+  [pageSize]="5"
+  [length]="totalResults()"
+  showFirstLastButtons
+  (page)="pageChanged($event)"
+/>
